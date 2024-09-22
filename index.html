@@ -18,10 +18,11 @@
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 2.5rem;
       margin-bottom: 10px;
       color: #fff;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      text-align: center;
     }
 
     .container {
@@ -31,23 +32,25 @@
 
     .image-btn {
       cursor: pointer;
-      width: 200px;
-      height: 200px;
-      background-image: url('https://via.placeholder.com/200x200.png?text=Click+Me');
+      width: 180px;
+      height: 180px;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVQGdMjTo098meAJTnqOSTKzT62sOcK_7ChQ&s');
       background-size: cover;
+      background-position: center;
       border: 4px solid #fff;
-      border-radius: 15px;
+      border-radius: 50%; /* Rasmni aylana qilish */
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s;
+      transition: transform 0.1s ease, box-shadow 0.1s ease; /* Tezlikni o'zgartirish */
     }
 
-    .image-btn:hover {
-      transform: scale(1.05);
+    .image-btn:active {
+      transform: scale(0.9); /* Tugma bosilganda ichkariga tez kirishi */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .dollar {
       position: absolute;
-      font-size: 24px;
+      font-size: 1.8rem;
       color: #2ecc71;
       opacity: 0;
       animation: floatUp 1s forwards;
@@ -64,18 +67,66 @@
       }
     }
 
-    .count {
+    .count, .total {
       margin-top: 20px;
-      font-size: 24px;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .total {
-      margin-top: 5px;
-      font-size: 18px;
+      font-size: 1.5rem;
       color: #fff;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .image-btn {
+        width: 200px;
+        height: 200px;
+      }
+
+      .dollar {
+        font-size: 2rem;
+      }
+
+      .count, .total {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 1024px) {
+      .image-btn {
+        width: 180px;
+        height: 180px;
+      }
+
+      .dollar {
+        font-size: 1.8rem;
+      }
+
+      .count, .total {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .image-btn {
+        width: 180px;
+        height: 180px;
+      }
+
+      .dollar {
+        font-size: 1.5rem;
+      }
+
+      .count, .total {
+        font-size: 1.3rem;
+      }
     }
   </style>
 </head>
@@ -104,11 +155,11 @@
       let dollars = Math.floor(count / 20); // Har 20 ta bosish = 1$
 
       // $ belgisi rasmning tasodifiy joyidan chiqadi
-      const randomX = Math.random() * 150;
-      const randomY = Math.random() * 150;
+      const randomX = Math.random() * (imageBtn.offsetWidth - 30);
+      const randomY = Math.random() * (imageBtn.offsetHeight - 30);
       dollarSign.style.left = `${randomX}px`;
       dollarSign.style.top = `${randomY}px`;
-      
+
       // Animatsiya qayta ishlashi uchun yangilash
       dollarSign.style.opacity = 1;
       dollarSign.style.animation = 'none';
